@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türk Beşleri Ödevi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #1a365d;
+            --secondary: #c53030;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a365d 0%, #2a4365 100%);
+        }
+
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .artist-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .artist-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .info-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Hero Section -->
+    <header class="hero-gradient text-white py-20 px-6 text-center shadow-2xl">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl title-font mb-4">Türk Beşleri</h1>
+            <p class="text-xl opacity-90 mb-10">Çok Sesli Batı Müziğinin Türkiye'deki Öncüleri</p>
+
+            <!-- Öğrenci Bilgileri -->
+            <div class="info-badge inline-block p-6 rounded-xl text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <p><i class="fas fa-user mr-2"></i> <strong>İsim Soyisim:</strong> Emre Küçük</p>
+                    <p><i class="fas fa-school mr-2"></i> <strong>Sınıf:</strong> 11/A BİLİŞİM</p>
+                    <p><i class="fas fa-id-card mr-2"></i> <strong>Okul No:</strong> 2535</p>
+                    <p><i class="fas fa-book mr-2"></i> <strong>Ders:</strong> Müzik</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="max-w-6xl mx-auto py-16 px-6">
+        <div class="grid grid-cols-1 gap-12" id="artist-container">
+            <!-- Sanatçı Kartları JS ile buraya gelecek -->
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <p>&copy; 2026 Emre Küçük - Müzik Ödevi.</p>
+    </footer>
+
+    <script>
+        const artists = [
+            {
+                name: "Ulvi Cemal Erkin",
+                image: "resimler/ulvi.jpg",
+                bio: [
+                    "1906 yılında İstanbul'da doğdu; annesinin piyano çalmasıyla müzikle iç içe büyüdü.",
+                    "Galatasaray Lisesi'ndeki eğitiminden sonra devlet bursuyla Paris'e gönderildi.",
+                    "Konservatuvar hocalığı ve Ankara Devlet Operası müdürlüğü yaptı.",
+                    "Eserlerinde Türk halk müziğinin ritmik ve melodik yapısını piyano ve orkestraya taşıdı.",
+                    "1972 yılında Ankara'da vefat eden sanatçı, yerli piyano edebiyatının en büyük ustasıdır."
+                ],
+                style: [
+                    "Halk Müziği Sentezi: Yerel ezgileri, modern batı teknikleriyle birleştirerek 'Türk Piyano Ekolü'nü oluşturmuştur.",
+                    "Ritmik Dinamizm: Aksak ritimleri (5/8, 7/8 gibi) senfonik eserlerinde ustaca kullanarak dinamik bir yapı kurmuştur.",
+                    "Lirik Anlatım: Müziği sadece teknik değil, aynı zamanda çok derin bir Anadolu lirikliği ve hüznü taşır.",
+                    "Eğitimci Kimliği: Ankara Devlet Konservatuvarı'nda onlarca besteci yetiştirmiş, akademik müziğe yön vermiştir."
+                ],
+                works: [
+                    "Köçekçe: Türk halk oyunlarından ilham alan en popüler ve enerjik orkestra eseridir.",
+                    "Piyano Konçertosu: Türk piyano müziğinin başyapıtı kabul edilir; yerli motiflerle doludur.",
+                    "1. Senfoni: Milli bir duyarlılıkla yazılmış, orkestra gücünü sonuna kadar kullanan bir eserdir.",
+                    "Beş Piyano Parçası: Piyano eğitimi alan her öğrencinin mutlaka çaldığı, çok sevilen kısa parçalardır."
+                ]
+            },
+            {
+                name: "Ahmet Adnan Saygun",
+                image: "resimler/adnan.jpg",
+                bio: [
+                    "1907 yılında İzmir'de doğdu; müzik tutkusuyla küçük yaşta kendi kendine çalışmaya başladı.",
+                    "Paris'te burslu okudu, Bela Bartok ile Anadolu'da halk müziği derleme çalışmaları yaptı.",
+                    "Türkiye'nin ilk operasının bestecisidir ve Ankara Devlet Konservatuvarı'nda dersler verdi.",
+                    "Sanat dünyasında 'Türk Beşleri'nin en teknik ve derinlikli bestecisi olarak kabul edilir.",
+                    "1991 yılında İstanbul'da vefat etti; eserleri dünya çapındaki orkestralar tarafından icra edilmektedir."
+                ],
+                style: [
+                    "Bilimsel Yaklaşım: Müzikolojiye büyük önem vermiş, halk ezgilerini bilimsel yöntemlerle analiz ederek bestelemiştir.",
+                    "Polifonik Zenginlik: Çok seslilikte oldukça karmaşık ve gelişmiş bir teknik kullanarak evrensel standartları yakalamıştır.",
+                    "Mistik ve Felsefi Temalar: Tasavvuf ve Türk felsefesini müziğinde derinden hissettiren epik bir anlatımı vardır.",
+                    "Uluslararası Başarı: Eserleri yurt dışında en çok seslendirilen ve tanınan Türk bestecilerin başında gelir."
+                ],
+                works: [
+                    "Yunus Emre Oratoryosu: Türk müziğinin en görkemli eseridir ve birçok dile çevrilerek dünyada seslendirilmiştir.",
+                    "Özsoy Operası: Cumhuriyet döneminde sahnelenen ilk Türk operasıdır.",
+                    "Atatürk'e Ağıt: Sanatçının vatan sevgisini ve derin hüznünü yansıtan çok güçlü bir orkestra yapıtıdır.",
+                    "5. Senfoni: Teknik ustalığının zirvesi olarak görülen modern ve lirik bir senfonidir."
+                ]
+            },
+            {
+                name: "Cemal Reşit Rey",
+                image: "resimler/cemal.jpg",
+                bio: [
+                    "1904 yılında Kudüs'te doğdu; müzisyen bir ailede piyano ile büyüdü.",
+                    "Çocukluğu ve gençliği Paris ile Cenevre'de dünya çapında eğitimlerle geçti.",
+                    "İstanbul Belediye Konservatuvarı'nda hocalık yaptı ve şehir orkestrasını kurdu.",
+                    "Batı müziği formlarını Türk halkının günlük yaşamıyla harmanladı.",
+                    "1985 yılında vefat eden sanatçı, Türk çok sesli müziğinin popülerleşmesini sağladı."
+                ],
+                style: [
+                    "Şehirli ve Modern Yaklaşım: İstanbul’un şehir kültürünü ve yaşantısını müziğine yansıtmıştır.",
+                    "Operet ve Tiyatro: Batı tarzı müzikli tiyatroyu Türk kültürüne uyarlayarak geniş kitlelere sevdirmiştir.",
+                    "Orkestra Kuruculuğu: İstanbul Devlet Senfoni Orkestrası'nın temellerini atmıştır.",
+                    "Evrensel Dil: Fransız müziğinin etkisiyle daha renkli, zarif ve modern bir teknik kullanmıştır."
+                ],
+                works: [
+                    "Lüküs Hayat: Cumhuriyet tarihinin en popüler operetidir; toplumsal değişimi eğlenceli bir dille anlatır.",
+                    "Onuncu Yıl Marşı: Bağımsızlık coşkusunu simgeleyen en önemli marşlardan biridir.",
+                    "Enstantaneler: Anadolu manzaralarını orkestra ile betimlediği senfonik bir eserdir.",
+                    "Türkiye: Ülkenin kültürel çeşitliliğini yansıtan bir senfonik şiirdir."
+                ]
+            },
+            {
+                name: "Hasan Ferit Alnar",
+                image: "resimler/hasan.jpg",
+                bio: [
+                    "1906 yılında İstanbul'da doğdu; küçük yaşta kanun çalmayı öğrendi.",
+                    "Genç yaşta İstanbul Belediye Konservatuvarı'nda hocalık yapmaya başladı.",
+                    "Viyana'da bestecilik ve orkestra şefliği üzerine ileri düzey eğitim aldı.",
+                    "Klasik Türk müziği bilgisini Batı tekniğiyle birleştirip özgün bir stil kurdu.",
+                    "Cumhurbaşkanlığı Senfoni Orkestrası'nda uzun yıllar şeflik yaparak hizmet verdi.",
+                    "1978 yılında Ankara'da vefat eden sanatçı geride çok değerli bir arşiv bıraktı."
+                ],
+                style: [
+                    "Makam ve Armoni Sentezi: Klasik Türk müziği makamlarını bozmadan çok sesli yapıyla birleştirmiştir.",
+                    "Enstrümantal Devrim: Kanun enstrümanını ilk kez bir senfoni orkestrasına dahil etmiştir.",
+                    "Şeflik Vizyonu: Türkiye'de modern orkestra şefliğinin öncülerinden olmuştur.",
+                    "Milli Üslup: Saray müziği ve halk ezgilerinden beslenen çok yönlü bir kimlik oluşturmuştur."
+                ],
+                works: [
+                    "Kanun Konçertosu: Dünyada kanun için yazılmış ilk ve en önemli senfonik eserdir.",
+                    "Sarı Zeybek: Folklorik öğeleri modern bir dille işlediği ünlü orkestra eseridir.",
+                    "Cello Konçertosu: Batı enstrümanları için yazdığı teknik açıdan güçlü bir yapıttır.",
+                    "İstanbul Süiti: İstanbul’un havasını senfonik bir dille anlattığı eseridir."
+                ]
+            },
+            {
+                name: "Necil Kazım Akses",
+                image: "resimler/necil.jpg",
+                bio: [
+                    "1908 yılında İstanbul'da doğdu ve küçük yaşta keman ile viyolonsel dersleri aldı.",
+                    "Viyana ve Prag'daki önemli müzik akademilerinde kompozisyon eğitimi gördü.",
+                    "Ankara Devlet Konservatuvarı'nın kuruluşunda bulundu ve yöneticilik yaptı.",
+                    "Müzik hayatı boyunca Türk müziğini modern ve evrensel bir dille ifade etmeye çalıştı.",
+                    "1999 yılında Ankara'da vefat eden sanatçı, Cumhuriyet tarihinin en önemli bestecilerindendir."
+                ],
+                style: [
+                    "Modern ve Evrensel Dil: Türk Besleri arasında batı tekniklerini en ileri seviyede kullanan yenilikçidir.",
+                    "Görkemli Anlatı: Eserlerinde genellikle derin duygulara ve felsefi düşüncelere yer vermiştir.",
+                    "Kültürel Sentez: Halk müziği öğelerini modern senfonik yapıların içinde ustaca gizlemiştir.",
+                    "Kurumsal Katkı: Müzik eğitiminin kurumsallaşmasında büyük roller üstlenmiştir."
+                ],
+                works: [
+                    "Ankara Kalesi: Ankara'nın ruhunu ve tarihini anlatan görkemli bir senfonik şiirdir.",
+                    "Mete Operası: Türk tarihine dayanan sahne müziğindeki gücünü gösteren eseridir.",
+                    "Viyolonsel Konçertosu: Teknik açıdan zorlu ve derin duygusal temalar içeren yapıttır.",
+                    "5. Senfoni (Atatürk'e Ağıt): Kurucumuz için yazılmış, saygı içeren güçlü bir eserdir."
+                ]
+            }
+        ];
+
+        function createArtistCards() {
+            const container = document.getElementById('artist-container');
+            artists.forEach((artist, index) => {
+                const card = document.createElement('div');
+                card.className = "artist-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 flex flex-col md:flex-row";
+
+                const bioHtml = artist.bio.map(line => `<li class="mb-2"><i class="fas fa-check text-blue-800 mr-2 text-sm"></i>${line}</li>`).join('');
+                const styleHtml = artist.style.map(item => `<li class="mb-3 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-800">${item}</li>`).join('');
+                const worksHtml = artist.works.map(work => `<li class="mb-2 font-semibold text-gray-700"><i class="fas fa-music text-red-600 mr-2"></i>${work}</li>`).join('');
+
+                card.innerHTML = `
+                    <div class="md:w-1/4 bg-gray-50 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
+                        <img src="${artist.image}" alt="${artist.name}" class="artist-img rounded-full mb-4" onerror="this.src='https://via.placeholder.com/150?text=${artist.name.split(' ')[0]}'">
+                        <h2 class="text-2xl title-font font-bold text-gray-800 text-center">${artist.name}</h2>
+                    </div>
+                    <div class="md:w-3/4 flex flex-col">
+                        <div class="p-6 border-b bg-white flex justify-end gap-2">
+                            <button onclick="showTab(${index}, 'bio')" id="btn-${index}-bio" class="tab-btn px-4 py-2 rounded-full text-xs md:text-sm font-bold bg-blue-800 text-white">Hayatı</button>
+                            <button onclick="showTab(${index}, 'style')" id="btn-${index}-style" class="tab-btn px-4 py-2 rounded-full text-xs md:text-sm font-bold bg-gray-200 text-gray-700">Sanat Anlayışı</button>
+                            <button onclick="showTab(${index}, 'works')" id="btn-${index}-works" class="tab-btn px-4 py-2 rounded-full text-xs md:text-sm font-bold bg-gray-200 text-gray-700">Eserleri</button>
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <div id="content-${index}-bio" class="tab-content content-${index} active">
+                                <h3 class="text-xl font-bold mb-4 text-blue-900"><i class="fas fa-history mr-2"></i>Hayat Öyküsü</h3>
+                                <ul class="text-gray-600 leading-relaxed text-sm md:text-base">${bioHtml}</ul>
+                            </div>
+                            <div id="content-${index}-style" class="tab-content content-${index}">
+                                <h3 class="text-xl font-bold mb-4 text-blue-900"><i class="fas fa-palette mr-2"></i>Sanat Anlayışı</h3>
+                                <ul class="text-gray-600 text-sm md:text-base">${styleHtml}</ul>
+                            </div>
+                            <div id="content-${index}-works" class="tab-content content-${index}">
+                                <h3 class="text-xl font-bold mb-4 text-blue-900"><i class="fas fa-list-ul mr-2"></i>Önemli Eserleri</h3>
+                                <ul class="list-none text-sm md:text-base">${worksHtml}</ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showTab(artistIndex, tabName) {
+            document.querySelectorAll(`.content-${artistIndex}`).forEach(el => el.classList.remove('active'));
+            document.getElementById(`content-${artistIndex}-${tabName}`).classList.add('active');
+
+            const buttons = document.querySelectorAll(`[id^="btn-${artistIndex}-"]`);
+            buttons.forEach(btn => {
+                btn.classList.replace('bg-blue-800', 'bg-gray-200');
+                btn.classList.replace('text-white', 'text-gray-700');
+            });
+            const activeBtn = document.getElementById(`btn-${artistIndex}-${tabName}`);
+            activeBtn.classList.replace('bg-gray-200', 'bg-blue-800');
+            activeBtn.classList.replace('text-gray-700', 'text-white');
+        }
+
+        window.onload = createArtistCards;
+    </script>
+</body>
+
+</html>
